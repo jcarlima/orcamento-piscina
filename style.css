@@ -94,3 +94,46 @@ input, select {
   }
 }
 
+input[type="checkbox"] {
+  width:10%;
+}
+
+.acessorio-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.acessorio-item input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.acessorio-item span {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  background-color: #25d366;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  margin-top: 12px;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ebe5b;
+}
+
+.btn-whatsapp .icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+}

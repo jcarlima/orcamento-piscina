@@ -14,6 +14,7 @@
       <li><a href="index.html">Gerar Orçamento</a></li>
       <li><a href="cadastrar.html">Cadastrar Modelos</a></li>
       <li><a href="juros.html">Configurar Juros</a></li>
+      <li><a href="acessorios.html">Cadastrar Acessórios</a></li>
     </ul>
   </nav>
 
@@ -27,13 +28,15 @@
     <input type="number" id="frete" min="0" required>
 
     <label for="entrada">Valor de Entrada (R$):</label>
-    <input type="number" id="entrada" min="0" placeholder="Opcional">
+    <input type="number" id="entrada" min="0" placeholder="Opcional">    
+    <h3>Acessórios</h3>
+    <div id="lista-acessorios"></div>
 
     <button onclick="calcularParcelas()">Calcular Parcelas</button>
 
     <div class="orcamento-resultado" id="resultado"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

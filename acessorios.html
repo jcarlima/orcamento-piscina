@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acessórios de Piscina</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🏊 Piscinas</div>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Gerar Orçamento</a></li>
+            <li><a href="cadastrar.html">Cadastrar Modelos</a></li>
+            <li><a href="juros.html">Configurar Juros</a></li>
+            <li><a href="acessorios.html">Cadastrar Acessórios</a></li>
+        </ul>
+    </nav>
+    <div class="orcamento-container">
+        <h1>Cadastro de Acessórios para Piscina</h1>
+
+        <form id="acessorio-form">
+            <input type="hidden" id="index" value="">
+            <div class="form-group">
+                <label for="nome">Nome*</label>
+                <input type="text" id="nome" required />
+            </div>
+            <div class="form-group">
+                <label for="preco">Preço (R$)*</label>
+                <input type="number" id="preco" required step="0.01" min="0" />
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao"></textarea>
+            </div>
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="limparFormulario()">Cancelar</button>
+        </form>
+    </div>
+    <div class="orcamento-container">
+        <h2>Acessórios Cadastrados</h2>
+        <table id="tabela-acessorios">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="acessorios.js"></script>
+</body>
+</html>
