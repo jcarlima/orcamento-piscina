@@ -37,27 +37,6 @@ body {
   text-decoration: none;
 }
 
-@media (max-width: 600px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: #007BFF;
-    width: 100%;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    padding: 1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
 .orcamento-container {
   max-width: 600px;
   margin: 2rem auto;
@@ -72,7 +51,7 @@ label {
 }
 
 input, select {
-  width: 100%;
+  width: 95%;
   padding: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -92,25 +71,19 @@ input, select {
   gap: 1rem;
 }
 
-.menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
 /* MOBILE RESPONSIVO */
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
+  .navbar .menu-toggle {
+    display: flex;
   }
 
   .nav-links {
     display: none;
     flex-direction: column;
-    background: #f0f0f0;
+    background: #007BFF;
     position: absolute;
-    top: 60px;
-    right: 10px;
+    top: 45px;
+    right: 15px;
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
