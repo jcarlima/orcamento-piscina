@@ -51,3 +51,7 @@ function calcularParcelas() {
   html += `<p><a href="${linkWhats}" target="_blank">📲 Enviar por WhatsApp</a></p>`;
   document.getElementById("resultado").innerHTML = html;
 }
+
+document.getElementById('menuToggle')?.addEventListener('click', () => {
+  document.getElementById('navLinks')?.classList.toggle('active');
+});
