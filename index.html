@@ -19,24 +19,35 @@
   </nav>
 
   <div class="orcamento-container">
-    <h2>Orçamento de Piscina</h2>
+    <h2>Orçamento</h2>
 
-    <label for="modelo">Modelo de Piscina:</label>
+    <label for="modelo">Modelo:</label>
     <select id="modelo"></select>
 
-    <label for="frete">Valor do Frete (R$):</label>
-    <input type="number" id="frete" min="0" required>
+    <label for="frete">Frete (R$):</label>
+    <input type="text" id="frete"  class="dinheiro" required>
 
-    <label for="entrada">Valor de Entrada (R$):</label>
-    <input type="number" id="entrada" min="0" placeholder="Opcional">    
+    <label for="entrada">Entrada (R$):</label>
+    <input type="text" id="entrada" class="dinheiro" placeholder="Opcional"> 
+
+    <label for="entrada">Desconto (R$):</label>
+    <input type="text" id="desconto" class="dinheiro" placeholder="Opcional"> 
+
     <h3>Acessórios</h3>
     <div id="lista-acessorios"></div>
 
-    <button onclick="calcularParcelas()">Calcular Parcelas</button>
+    <button onclick="calcularParcelas()" id="btn-calcular" class="btn-calcular">
+      <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Calcular" class="icon-calc" />
+      Calcular Parcelas
+    </button>
 
     <div class="orcamento-resultado" id="resultado"></div>
+    <div class="botoes-acao" id="botoes"></div>
   </div>
 
   <script src="index.js"></script>
+  <script src="util.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </body>
 </html>

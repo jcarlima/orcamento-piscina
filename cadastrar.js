@@ -17,7 +17,7 @@ document.getElementById('menuToggle')?.addEventListener('click', () => {
 
   function salvarModelo() {
     const nome = document.getElementById("nome").value;
-    const valor = parseFloat(document.getElementById("valor").value);
+    const valor = parseValorMonetario(document.getElementById("valor").value );
     const editIndex = parseInt(document.getElementById("editIndex").value);
     if (!nome || isNaN(valor) || valor <= 0) {
       alert("Preencha nome e valor corretamente.");

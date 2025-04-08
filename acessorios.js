@@ -51,7 +51,7 @@ function excluirAcessorio(index) {
 document.getElementById("acessorio-form").addEventListener("submit", function (e) {
     e.preventDefault();
     const nome = document.getElementById("nome").value.trim();
-    const preco = parseFloat(document.getElementById("preco").value);
+    const preco = parseValorMonetario(document.getElementById("preco").value);
     const descricao = document.getElementById("descricao").value.trim();
     const index = document.getElementById("index").value;
 

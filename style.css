@@ -56,9 +56,6 @@ input, select {
   margin-bottom: 1rem;
 }
 
-.orcamento-resultado {
-  margin-top: 2rem;
-}
 
 .valor-vista {
   margin-top: 1rem;
@@ -137,3 +134,128 @@ input[type="checkbox"] {
   height: 25px;
   margin-right: 8px;
 }
+
+.orcamento-resultado {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  margin-top: 15px;
+
+}
+
+.orcamento-resultado h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.btn-pdf {
+  display: inline-flex;
+  align-items: center;
+  background-color: red;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  margin-top: 12px;
+}
+
+.btn-pdf:hover {
+  background-color: darkred;
+}
+
+.btn-pdf .icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+}
+
+.btn-calcular {
+  display: inline-flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-calcular:hover {
+  background-color: #1565c0;
+}
+
+.btn-calcular:active {
+  transform: scale(0.98);
+}
+
+.icon-calc {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.botoes-acao {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn-acao {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.btn-acao:hover {
+  transform: scale(0.98);
+}
+
+/* WhatsApp estilo */
+#btn-whatsapp {
+  background-color: #25d366;
+}
+
+#btn-whatsapp:hover {
+  background-color: #1ebe5d;
+}
+
+/* PDF estilo */
+.btn-acao:nth-child(2) {
+  background-color: #d32f2f;
+}
+
+.btn-acao:nth-child(2):hover {
+  background-color: #b71c1c;
+}
+
+/* Ícone */
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+

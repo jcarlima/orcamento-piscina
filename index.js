@@ -14,50 +14,56 @@ modelos.forEach((m, i) => {
 function calcularParcelas() {
   const index = parseInt(selectModelo.value);
   const modelo = modelos[index];
-  const frete = parseFloat(document.getElementById("frete").value) || 0;
-  const entrada = parseFloat(document.getElementById("entrada").value) || 0;
+  const frete = parseValorMonetario(document.getElementById("frete").value) || 0;
+  const entrada = parseValorMonetario(document.getElementById("entrada").value) || 0;
   const totalAcessorios = calcularTotalAcessorios();
+  const desconto = parseValorMonetario(document.getElementById("desconto").value) || 0;
+
   if (isNaN(frete) || frete <= 0) {
     alert("Informe o valor do frete.");
     return;
   }
 
-  const valorModelo = parseFloat(modelo.valor);
-  const totalAVista = valorModelo + frete + totalAcessorios;
-  const totalParcelado = (valorModelo + frete + totalAcessorios) - entrada;
+  const valorModelo = modelo.valor;
+  const totalAVista = valorModelo + frete + totalAcessorios - desconto;
+  const totalParcelado = totalAVista - entrada;
   const taxas = JSON.parse(localStorage.getItem("taxasJurosParcelas") || "{}");
 
   let html = `<h3>Parcelamento - ${modelo.nome}</h3>`;
   let mensagem = `*Orçamento - ${modelo.nome}*
 
-    Valor Piscina: R$ ${valorModelo}
-    Acessorios: R$ ${totalAcessorios}
-🚚 Frete: R$ ${frete.toFixed(2).replace(".", ",")}
-💰 Total à vista: R$ ${totalAVista.toFixed(2).replace(".", ",")}
-📦 Entrada: R$ ${entrada.toFixed(2).replace(".", ",")}
-
+    Valor Piscina: R$ ${moedaMarkara(valorModelo)}
+    Acessorios: R$ ${moedaMarkara(totalAcessorios)}
+    Desconto: R$ ${moedaMarkara(desconto)}
+🚚 Frete: R$ ${moedaMarkara(frete)}
+💰 Total à vista: R$ ${moedaMarkara(totalAVista)}
+📦 Entrada: R$ ${moedaMarkara(entrada)}
 
 📆 Parcelamento:
 `;
-  html += `<p class="valor-vista">💵 Valor à vista total: R$ ${totalAVista.toFixed(2).replace(".", ",")}</p>`;
-  
+  html += `<p class="valor-vista">💵 Valor à vista: R$ ${moedaMarkara(totalAVista)}</p>`;
+
   for (let i = 1; i <= 12; i++) {
     const taxa = (taxas[i] || 0) / 100;
     const totalComJuros = totalParcelado * (1 + taxa);
     const parcela = totalComJuros / i;
-    html += `<p>${i}x de R$ ${parcela.toFixed(2).replace(".", ",")} (${(taxa * 100).toFixed(1)}%) Total com Juros: ${totalComJuros.toFixed(2).replace(".", ",")}</p>`;
-    mensagem += `${i}x de R$ ${parcela.toFixed(2).replace(".", ",")}. Total com Juros: ${totalComJuros.toFixed(2).replace(".", ",")}
+    html += `<p>${i}x de R$ ${moedaMarkara(parcela)} = ${moedaMarkara(totalComJuros)}</p>`;
+    mensagem += `${i}x de R$ ${moedaMarkara(parcela)} = ${moedaMarkara(totalComJuros)}
 `;
   }
 
 
   const linkWhats = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
- // html += `<p><a href="${linkWhats}" target="_blank">📲 Enviar por WhatsApp</a></p>`;
-  html += `<a href="${linkWhats}" id="btn-whatsapp" class="btn-whatsapp" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon" />
-  Enviar por WhatsApp
-</a>`
+
   document.getElementById("resultado").innerHTML = html;
+  document.getElementById("botoes").innerHTML = `
+    <a href="${linkWhats}" id="btn-whatsapp" class="btn-acao" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="btn-icon" />
+          Enviar por WhatsApp
+    </a>
+    <a class="btn-acao" onclick="gerarPDF()">
+    <img src="logopdf.webp" alt="PDF" class="btn-icon" />
+    Baixar Orçamento em PDF</a>`;
 }
 
 function carregarAcessorios() {
@@ -101,4 +107,23 @@ function calcularTotalAcessorios() {
     }
   });
   return total;
+}
+
+function gerarPDF() {
+  const element = document.querySelector('.orcamento-resultado');
+
+  if (!element) {
+    alert("Resumo do orçamento não encontrado!");
+    return;
+  }
+
+  const options = {
+    margin: 5,
+    filename: 'orcamento-piscina.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 1.5 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().set(options).from(element).save();
 }
