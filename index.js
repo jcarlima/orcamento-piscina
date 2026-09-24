@@ -30,17 +30,16 @@ function calcularParcelas() {
   const taxas = JSON.parse(localStorage.getItem("taxasJurosParcelas") || "{}");
 
   let html = `<h3>Parcelamento - ${modelo.nome}</h3>`;
-  let mensagem = `*Orçamento - ${modelo.nome}*
-
-    Valor Piscina: R$ ${moedaMarkara(valorModelo)}
-    Acessorios: R$ ${moedaMarkara(totalAcessorios)}
-    Desconto: R$ ${moedaMarkara(desconto)}
-🚚 Frete: R$ ${moedaMarkara(frete)}
-💰 Total à vista: R$ ${moedaMarkara(totalAVista)}
-📦 Entrada: R$ ${moedaMarkara(entrada)}
-
-📆 Parcelamento:
-`;
+  const linhasMensagem = [
+    `Orçamento - ${modelo.nome}`,
+    `Valor Piscina: R$ ${moedaMarkara(valorModelo)}`,
+    `Acessorios: R$ ${moedaMarkara(totalAcessorios)}`,
+    `Desconto: R$ ${moedaMarkara(desconto)}`,
+    `Frete: R$ ${moedaMarkara(frete)}`,
+    `Total à vista: R$ ${moedaMarkara(totalAVista)}`,
+    `Entrada: R$ ${moedaMarkara(entrada)}`,
+    'Parcelamento:'
+  ];
   html += `<p class="valor-vista">💵 Valor à vista: R$ ${moedaMarkara(totalAVista)}</p>`;
 
   for (let i = 1; i <= 12; i++) {
@@ -48,11 +47,11 @@ function calcularParcelas() {
     const totalComJuros = totalParcelado * (1 + taxa);
     const parcela = totalComJuros / i;
     html += `<p>${i}x de R$ ${moedaMarkara(parcela)} = ${moedaMarkara(totalComJuros)}</p>`;
-    mensagem += `${i}x de R$ ${moedaMarkara(parcela)} = ${moedaMarkara(totalComJuros)}
-`;
+    linhasMensagem.push(`${i}x de R$ ${moedaMarkara(parcela)} = ${moedaMarkara(totalComJuros)}`);
   }
 
 
+  const mensagem = linhasMensagem.join('\n\n');
   const linkWhats = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
 
   document.getElementById("resultado").innerHTML = html;
